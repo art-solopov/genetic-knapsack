@@ -7,11 +7,23 @@ init() ->
     % Items are { weight, price }
     % For this particular knapsack the cost should be at least 227.
     Items = [ { 51, 60 }, { 5, 2 }, { 12, 14 }, { 2, 1 } ],
-    Population = [],
+    Population = [ random:uniform(Knapsack div Iw) || { Iw, _ } <- Items ],
     step(Knapsack, Items, Population, 0).
 
 step(Knapsack, Items, Population, PrevVal) ->
-    0.
+    CrossPop = cross(Population),
+    MutPop = mutate(CrossPop, 0.1),
+    SelPop = select(MutPop, Knapsack, Items).
+
+% TODO implement
+cross(Population) ->
+    Population.
+
+mutate(Population, MutationProbability) ->
+    Population.
+
+select(Population, Knapsack, Items) ->
+    Population.
 
 fit(KnapsackConfig, Knapsack, Items) ->
     fit(KnapsackConfig, Knapsack, Items, 0, 0).
